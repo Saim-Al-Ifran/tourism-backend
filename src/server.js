@@ -21,6 +21,20 @@ app.post('/tourist_spots',async(req,res)=>{
     }
 });
 
+
+app.get('/tourist_spots', async (req, res) => {
+    try {
+        let query = {};
+        if (req.query.email) {
+            query.user_email = req.query.email;
+        }
+        const touristSpots = await TouristSpot.find(query);
+        res.json(touristSpots);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
  
 const port = 3000; 
 
