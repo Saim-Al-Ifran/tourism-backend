@@ -6,7 +6,7 @@ const mongoDbUrl= process.env.MONGODB_URL;
 const connectDB = async (options = {}) => {
     try {
         if (!mongoDbUrl) {
-            throw new Error('MongoDB URL is not defined in secret.js');
+            throw new Error('MongoDB URL is not defined');
         }
 
         await mongoose.connect(mongoDbUrl, options);
