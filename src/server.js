@@ -36,6 +36,25 @@ app.get('/tourist_spots', async (req, res) => {
 });
 
  
+app.put('/tourist_spots/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedData = req.body;
+
+        
+        const updatedTouristSpot = await TouristSpot.findByIdAndUpdate(id, updatedData, { new: true });
+        if (!updatedTouristSpot) {
+            return res.status(404).json({ message: "Tourist spot not found" });
+        }
+
+        res.json(updatedTouristSpot);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
+
+ 
 const port = 3000; 
 
 app.listen(port, async() => {
