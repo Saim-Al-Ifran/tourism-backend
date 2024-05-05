@@ -35,6 +35,20 @@ app.get('/tourist_spots', async (req, res) => {
     }
 });
 
+
+app.get('/tourist_spots/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const touristSpot = await TouristSpot.findById(id);
+        if (!touristSpot) {
+            return res.status(404).json({ message: "Tourist spot not found" });
+        }
+        res.json(touristSpot);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+
  
 app.put('/tourist_spots/:id', async (req, res) => {
     try {
@@ -53,6 +67,19 @@ app.put('/tourist_spots/:id', async (req, res) => {
     }
 });
 
+
+app.delete('/tourist_spots/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedTouristSpot = await TouristSpot.findByIdAndDelete(id);
+        if (!deletedTouristSpot) {
+            return res.status(404).json({ message: "Tourist spot not found" });
+        }
+        res.json({ message: "Tourist spot deleted successfully" });
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
 
  
 const port = 3000; 
