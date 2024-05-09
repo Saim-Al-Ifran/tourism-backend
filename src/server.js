@@ -61,7 +61,7 @@ app.put('/tourist_spots/:id', async (req, res) => {
             return res.status(404).json({ message: "Tourist spot not found" });
         }
 
-        res.json(updatedTouristSpot);
+        res.status(200).json(updatedTouristSpot);
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -71,11 +71,12 @@ app.put('/tourist_spots/:id', async (req, res) => {
 app.delete('/tourist_spots/:id', async (req, res) => {
     try {
         const { id } = req.params;
+        console.log(id);
         const deletedTouristSpot = await TouristSpot.findByIdAndDelete(id);
         if (!deletedTouristSpot) {
             return res.status(404).json({ message: "Tourist spot not found" });
         }
-        res.json({ message: "Tourist spot deleted successfully" });
+        res.status(200).json({ message: "Tourist spot deleted successfully" });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
