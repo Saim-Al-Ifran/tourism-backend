@@ -4,14 +4,14 @@
       {
         "src": "/(.*)",
         "dest": "/server.js",
-        "methods":["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
+        "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
       }
     ],
     "builds": [
-      { "src": "src/server.js",
+      {
+        "src": "src/server.js",
         "use": "@vercel/node"
       }
     ]
- 
   }
   
